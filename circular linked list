@@ -1,0 +1,182 @@
+//Circular linked list
+import java.util.Scanner;
+class Node {
+    int data ;
+    Node next;
+}
+class Man{
+  static Node head;
+
+    //first element
+                public static void firstelement(int val)
+                {
+                   // Node head;
+                   Node newnode=new Node();
+                   head =new Node();
+                    head.data=val;
+                    head.next=head;
+                    System.out.print("Node is added succesfully");
+                    return;
+                }
+
+    //Addfirst
+                    public  static void  Addfirst(int val)
+                    {
+                      //   Node head;
+                        Node newnode=new Node();
+                        newnode.data=val;
+                        if(head ==null)
+                        {
+                            firstelement(val);
+                        
+                        }
+                        else
+                        {
+                                Node temp=head;
+                                while(temp.next!=head)
+                                {
+                                temp=temp.next;
+                                }
+                            temp.next=newnode;
+                            newnode.next=head;
+                            head=newnode;
+                            System.out.println("Node is added succesfully");
+                        }
+                    }
+    //Addlast
+                public static void Addlast(int val)
+                {
+                  //Node head;
+                    Node newnode=new Node();
+                    newnode.data=val;
+                    if(head==null)
+                    {
+                        firstelement(val);
+                        System.out.println("Node is added succesfully");
+                    }
+                    else
+                    {
+                            Node temp=head;
+                            while(temp.next!=head)
+                            {
+                            temp=temp.next;
+                            }
+                        temp.next=newnode;
+                        newnode.next=head;
+                        System.out.println("Node is added succesfully");
+                    }
+                }
+
+//search
+                public static boolean search(int val)
+                {
+                    //Node head;
+                    if(head ==null){
+                        System.out.print("No NOde");
+                    }
+                    else{
+                        Node temp=head;
+                        do{
+                            if(temp.data==val){
+                                System.out.println("Search key is found");
+                            return true;
+                            }
+                            temp=temp.next;
+                        }while(temp!=head);
+                        
+                    }
+                    System.out.println("Search key not is found");
+                    return false;
+                }
+
+// delete
+      public static void Delete(int val)
+      {
+      //  Node head;
+            Node temp=head;
+            if(head.data==val  && head.next==head){
+                head=null;
+            }
+            else if(head.data==val)
+                    {
+                        Node last =head;
+                        while(last.next!=head){
+                            last=last.next;
+                        }
+                        last.next=head.next;
+                        head=head.next;
+                    }
+            else
+                {
+                    Node current = head;
+
+                    while(current.next != head)
+                    {
+                        if(current.next.data == val)
+                        {
+                            current.next = current.next.next;
+                            break;
+                        }
+                        current = current.next;
+                    }
+                }
+    }
+        
+        //Print
+        public static void print()
+        
+        {
+         // Node head;
+            Node temp=head;
+            if(head==null){System.out.println("Null");return;}
+            else
+            {
+                do{System.out.println(temp.data);temp=temp.next;}while(temp!=head);
+            }
+
+        }
+    
+    
+
+
+    //Main
+    public static void main(String args[])
+    {
+                Scanner sc=new Scanner(System.in);
+                while(true)
+                {
+                    System.out.println("Enter the command\n1--Print()\n2--AddFirst\n3--AddLast\n4--Delete\n5--Search\n6--Exit\n");
+                    int n=sc.nextInt();
+                    int val;
+                    switch(n)
+                    {
+                        case 1:
+                        print();
+                        break;
+                        case 2:
+                        val=sc.nextInt();
+                        Addfirst(val);
+                        break;
+                        case 3:
+                        val=sc.nextInt();
+                        Addlast(val);
+                        break;
+                        case 4:
+                        val=sc.nextInt();
+                        Delete(val);
+                        break;
+                        case 5:
+                        val=sc.nextInt();
+                        search(val);
+                        break;
+                        case 6:
+                        sc.close();
+                        break;
+                        default:
+                        System.out.print("Enter the value crt");
+
+                    }
+                }
+                    
+    }
+}
