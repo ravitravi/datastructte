@@ -1,0 +1,124 @@
+import java.util.Scanner;
+class Node{
+int data;
+Node prev,next;
+}
+public class Main {
+static Node head;
+public static void firstelement(int val) {
+Node newnode=new Node();
+head =newnode;
+head.data=val;
+head.next=null;
+head.prev=null;
+
+}
+
+    public static void Search(int key){
+    if(head==null){System.out.println("Node is Empty");}
+    else {
+    Node search=head;
+    while(search!=null) {
+    if(search.data==key) {System.out.println("Key is found");return;}
+       search=search.next;
+    }
+   
+         System.out.println("Node is Not Founded");}
+    }
+    public static void Delete(int key){
+    Node del=head;
+    if(head==null) {System.out.println("Node is empty");return;}
+    if(head.data==key) {head=head.next;
+    head.prev=null;return;
+    }
+    else {
+    while(del.next!=null) {
+    if(del.next.data==key) {
+    del.next.next.prev=del;
+    del.next=del.next.next;
+    break;
+    }
+    }
+    }
+        System.out.println("Node is sucessfully Deleted ");
+    }
+    public static void AddLast(int val){
+    Node newnode=new Node();
+    newnode.data=val;
+    newnode.next=null;
+    if(head==null) {firstelement(val);return;}
+    else {
+    Node last=head;
+    while(last.next!=null) {last=last.next;}
+    newnode.prev=last;
+    last.next=newnode;
+    }
+        System.out.println("New node is sucessfully added at Last");
+    }
+   
+    //Add first
+    public static void AddFirst(int val){
+    Node newnode=new Node();
+    newnode.data=val;
+    newnode.prev=null;
+    if(head==null) {firstelement(val);return ;}
+    else {
+    head.prev=newnode;
+    newnode.next=head;
+        head=newnode;
+    }
+    System.out.println("New node is sucessfully added ");
+    }
+    //Print
+    public static void Print(){
+    Node temp=head;
+    if (temp==null) {
+    System.out.println("Node is null");
+    return;}
+    System.out.println("Nodes are");
+    while(temp!=null) {
+    System.out.println(temp.data);
+    temp=temp.next;
+    }
+       
+       
+    }
+    // Main function
+   
+    public static void main(String args[])
+    {  
+        Scanner sc=new Scanner(System.in);
+        while(true)
+        {
+        System.out.println("Enter the command \n1--Print()\n2--AddFirst\n3--AddLast\n4--Delete\n5--Search\n6--Exit\n");
+        int n=sc.nextInt();
+        int val;
+        switch(n)
+        {case 1:
+                Print();
+                break;
+            case 2:
+                val=sc.nextInt();
+                AddFirst(val);
+                break;
+            case 3:
+                val=sc.nextInt();
+                AddLast(val);
+                break;
+            case 4:
+                val=sc.nextInt();
+                Delete(val);
+                break;
+            case 5:
+                val=sc.nextInt();
+                Search(val);
+                break;
+            case 6:
+                sc.close();
+                break;
+            default:
+            System.out.println("Element is not found");
+        }
+        }
+    }
+}
