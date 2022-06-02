@@ -1,0 +1,93 @@
+import java.util.Scanner;
+
+// Node class
+class Node 
+{
+int data;
+Node next;
+}
+
+// Main class
+class Reverselinkedlist
+{
+    static Node head=null;
+    
+    //reverse
+    
+    static void reverse()
+    {
+        Node temp = head, t1 = null, t2 = null;
+        while(temp!=null)
+        {
+            t2 = temp.next;
+            temp.next = t1;
+            t1 = temp;
+            temp = t2;
+        }
+        head = t1;
+    }
+    
+ //Print
+    
+    static void print()
+    {
+        if(head==null)
+        {
+        System.out.println("Node is empty");
+        
+    }
+    else {
+        Node temp=head;
+        while(temp!=null)
+        {
+            System.out.println(temp.data);
+            temp=temp.next;
+        }    
+        
+    }
+    }
+    
+  //Push
+    static void push(int data)
+    {
+        Node newnode=new Node();
+        newnode.data=data;
+        if (head==null)
+        {
+        head=newnode;
+        newnode.next=null;
+    }
+    else
+    {
+        newnode.next=head;
+        head=newnode;
+    }
+    System.out.println("Node is successfully added");
+        
+    }
+  // Main
+    public static void main(String args[])
+    {
+    Scanner sc=new Scanner (System.in);
+    while(true)
+    {
+        int n=sc.nextInt();
+        switch(n)
+        {
+            case 1:
+                int a=sc.nextInt();
+                push(a);
+                break;
+            case 2:
+                print();
+                break;
+            case 3:
+                reverse();
+                break;
+            default:
+            System.out.println("Enter crt num");
+        }
+    }
+        
+    }
+}
