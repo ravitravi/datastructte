@@ -1,0 +1,62 @@
+class Node{
+    int data ;
+    Node next;
+}
+class Middle{
+    static Node head;
+
+public static void midle()
+{
+    Node last=head;
+    Node middle=head;
+    int count=0;
+
+    while(last!=null)
+    {
+        count++;
+        last=last.next;
+    }
+    for(int i=1;i<=count/2;i++)
+    {
+        middle=head;
+        head=middle.next;
+    }
+    System.out.println("Middle Node is "+middle.data);
+}
+
+    // add
+    public static void add(int val)
+    {
+        if(head==null)
+        {
+            head=new Node();
+            head.data=val;
+            head.next=null;
+
+        }
+        else
+        {
+            Node newnode=new Node();
+            newnode.data=val;
+            newnode.next=head;
+            head=newnode;
+
+        }
+
+    }
+
+
+    // Main function
+    public static void main(String args[])
+    {
+        Middle list= new Middle();
+        list.add(44);
+        list.add(55);
+        list.add(66);
+        list.add(77);
+        list.add(88);
+        list.add(89);
+
+       list.midle();
+    }
+}
